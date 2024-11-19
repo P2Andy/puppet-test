@@ -1,0 +1,4 @@
+pushd oss
+docker compose --profile puppet down
+#docker compose --profile hdm down
+popd

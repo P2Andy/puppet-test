@@ -1,0 +1,39 @@
+---
+production:
+  authentication_disabled: false    # disable user auth and management
+  read_only: true                   # read/write mode?
+  allow_encryption: false           # encypting eyaml
+  puppet_db:                        # PuppetDB access - plain text (default)
+#    server: http://localhost:8080
+    server: http://puppetdb:8080
+  puppet_db:                        # PuppetDB access-  PE token auth
+    server: 'https://localhost:8081'
+    token: '/etc/hdm/puppetdb.token'
+    cacert: '<path to cacert>'
+  puppet_db:                        # PuppetDB access - SSL Cert auth
+    server: 'https://localhost:8081'
+    pem:
+      key: <path to key>
+      cert: <path to cert>
+      ca_file: <path to ca_file>
+
+  hiera_config_file: "hiera.yaml"   # hiera config file name
+  config_dir: /etc/puppetlabs/code  # puppet code directory
+  global_hiera_yaml: /etc/puppetlabs/puppet/hiera.yaml
+  base_module_path: "/etc/puppetlabs/puppet/code:/opt/puppetlabs/puppet/modules" # optional, in case you overwrite `basemodulepath` in puppet.conf
+
+  ldap:                             # LDAP User auth
+    host: 'localhost'
+    port: 389
+    base_dn: 'ou=hdm,dc=nodomain'
+    bind_dn: 'cn=admin,dc=nodomain'
+    bind_dn_password: 'openldap'
+    ldaps: false
+
+  git_data:
+    - datadir: /etc/puppetlabs/code/myenv/data
+      git_url: git@githost.example.com:puppet/hiera_data.git
+      path_in_repo: environments/myenv/data
+    - datadir: /etc/puppetlabs/code/panda/data
+      git@github.com:P2Andy/puppet-panda.git
+      path_in_repo: environments/panda/data
