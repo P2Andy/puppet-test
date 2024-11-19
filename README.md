@@ -1,1 +1,1 @@
-# puppet-test
+# puppet-panda

@@ -1,2 +1,2 @@
-git https://github.com/voxpupuli/crafty.git
+Original: git https://github.com/voxpupuli/crafty.git
 
